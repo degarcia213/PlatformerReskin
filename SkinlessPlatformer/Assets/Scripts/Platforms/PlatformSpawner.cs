@@ -30,7 +30,8 @@ public class PlatformSpawner : MonoBehaviour {
 		controller.mgObjects.Add(newPlat);
 
 		if (spawnsEnemies){
-			float myChance = Random.Range(0,1);
+			float myChance = Random.Range(0.0f,1.0f);
+			Debug.Log(myChance);
 			if (myChance <= spawnChance)
 			{
 				Vector3 enemySpawnPos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z); 

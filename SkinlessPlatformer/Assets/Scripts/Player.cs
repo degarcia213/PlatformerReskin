@@ -89,7 +89,8 @@ public class Player : MonoBehaviour {
 				{
 					animator.Play("playerIdle");
 				} else {
-					animator.Play("playerWalk");
+					//animator.Play("playerWalk");
+					animator.Play("frogWalk");
 				}
 			}
 

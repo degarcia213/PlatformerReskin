@@ -15,7 +15,8 @@ public class GroundTile : MonoBehaviour {
 	public void PickRandomSprite()
 	{
 		float randomizer = Random.Range(0f,1f);
-		if (randomizer < .75)
+
+		if (randomizer < .75 || possibleSprites.Length < 2)
 		{
 			GetComponent<SpriteRenderer>().sprite = possibleSprites[0];
 		} else {
