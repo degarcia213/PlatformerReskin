@@ -12,6 +12,9 @@ public class Player : MonoBehaviour {
 	bool doubleJump = false;
 	public bool canDoubleJump;
 
+	public bool squash = false;
+
+
 
 	Rigidbody2D myBody;
 
@@ -29,6 +32,15 @@ public class Player : MonoBehaviour {
 	private Animator animator;
 	private GameController gameController;
 
+
+	public EffectController myFX;
+	public ParticleSystem dustEmitter;
+
+	public MyCamera myCamShake;
+
+	//how to modify the x scale based on direction
+	int xScaleDirMod = 1;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -40,6 +52,7 @@ public class Player : MonoBehaviour {
 		//getting screen size and player size for bounds locking
 		world = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0.0f));
 		halfSize = GetComponent<SpriteRenderer>().bounds.size.x/2;
+
 	}
 	
 	// Update is called once per frame
@@ -53,7 +66,9 @@ public class Player : MonoBehaviour {
 				currentXSpeed = -xSpeed;
 
 				//ensure sprite faces left
-				Vector3 myScale = new Vector3(-1,1,1);
+				xScaleDirMod = -1;
+
+				Vector3 myScale = new Vector3(xScaleDirMod,transform.localScale.y,1);
 				transform.localScale = myScale;
 			}
 			//here's D or right
@@ -63,7 +78,8 @@ public class Player : MonoBehaviour {
 				currentXSpeed = xSpeed;
 
 				//ensure sprite faces right
-				Vector3 myScale = new Vector3(1,1,1);
+				xScaleDirMod = 1;
+				Vector3 myScale = new Vector3(xScaleDirMod,transform.localScale.y,1);
 				transform.localScale = myScale;
 			}
 
@@ -83,15 +99,28 @@ public class Player : MonoBehaviour {
 
 			//resetting our double jump when we land, and making sure we aren't playing the jump animation anymore.
 			if (onGround) {
+				
 				doubleJump = false;
 
 				if (currentXSpeed == 0)
 				{
 					animator.Play("playerIdle");
+					dustEmitter.Stop();
 				} else {
 					//animator.Play("playerWalk");
 					animator.Play("frogWalk");
+					//emit particles here
+					if (!dustEmitter.isPlaying){
+						dustEmitter.Play();
+					}
 				}
+			} else if (myBody.velocity.y < 0) {
+
+				animator.Play("playerFall");
+
+
+			} else {
+				dustEmitter.Stop();
 			}
 
 
@@ -119,17 +148,40 @@ public class Player : MonoBehaviour {
 					Jump();
 				}
 			}
-		} else {
 
+			if (squash) {
+				if (Vector3.Distance(transform.localScale, new Vector3(xScaleDirMod,1,1)) > .1) { 
+					transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(xScaleDirMod,1,1), .2f );
+				} else {
+					squash = false;
+					transform.localScale = new Vector3(xScaleDirMod,1,1);
+				}
+			}
+
+
+		} else {
+			//what should happen if you're dead....?
 		}
 	}
 
 	// called once every physics step
 	void FixedUpdate() {
 		//checing to see if there's a ground tile in the area defined below us by the overlap area gameobjects (you can reposition these -- they're parented under the player object)
-		if (Physics2D.OverlapArea(topLeft.position, bottomRight.position, groundLayer) && myBody.velocity.y <= 0){
+		if (Physics2D.OverlapArea(topLeft.position, bottomRight.position, groundLayer) && myBody.velocity.y <= 0)
+		{
+			if (!onGround){
+				SquashStretch(2.0f,.25f);
+			}
 			onGround = true;
+		} else {
+			onGround = false;
+			//dustEmitter.Stop();
 		}
+	}
+
+	void SquashStretch(float _xAmount, float _yAmount){
+		squash = true;
+		transform.localScale = new Vector3(xScaleDirMod * _xAmount, _yAmount, 1);
 	}
 
 	void Jump(){
@@ -140,6 +192,13 @@ public class Player : MonoBehaviour {
 			myBody.velocity = new Vector2(currentXSpeed, jumpStrength);
 			animator.Play("playerJump", -1, 0);
 			onGround = false;
+			SquashStretch(.5f, 2.0f);
+
+			myFX.SpawnEffect(myFX.dustPoofFX, transform.position);
+
+
+//			dustEmitter.Stop();
+//			myFX.SpawnEffect(myFX.dustPoofFX, transform.position);
 	}
 
 	//currently called at the end of the player's death animation -- this tells the game controller to go to the game over screen.
@@ -175,6 +234,8 @@ public class Player : MonoBehaviour {
 				if (other.transform.parent && other.transform.parent.gameObject.tag == "Enemy"){
 					Enemy thisEnemy = other.transform.parent.gameObject.GetComponent<Enemy>();
 					thisEnemy.killEnemy();
+					StartCoroutine(myFX.HitPause(.3f));
+					myCamShake.ShakeCamera(.2f, .2f);   /// <---- THIS SHAKES THE CAM!!! 
 					gameController.totalBonks += 1;
 					Jump();
 					doubleJump = false;

@@ -1,0 +1,17 @@
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/obj/Debug/Assembly-CSharp-firstpass.dll
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/obj/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/Temp/bin/Debug/UnityEngine.dll
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/Temp/bin/Debug/UnityEditor.dll
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/Temp/bin/Debug/Mono.Cecil.dll
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/Temp/bin/Debug/Unity.DataContract.dll
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/Diego/Dropbox/Teaching/Fall 2016/Game Center 2D Art & Anim/ReskinRepo/SkinlessPlatformer/Temp/bin/Debug/Mono.Cecil.Mdb.dll
